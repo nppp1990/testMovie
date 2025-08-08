@@ -36,8 +36,12 @@ dependencies:
 #  cupertino_icons: ^1.0.8
   retrofit: ^4.4.0
   dio: ^5.7.0
+  json_annotation: ^4.9.0
+
   flutter_hooks: ^0.21.2
   hooks_riverpod: ^2.6.1
+
+  logger: ^2.6.0
 
 dev_dependencies:
   flutter_test:
