@@ -28,6 +28,7 @@ class MoviePage extends HookWidget {
                   indicatorSize: TabBarIndicatorSize.label,
                   labelPadding: EdgeInsets.symmetric(horizontal: 10),
                   indicatorPadding: EdgeInsets.only(bottom: 8),
+                  dividerColor: Colors.transparent,
                   tabs: [
                     Tab(text: LocaleKeys.popular.tr),
                     Tab(text: LocaleKeys.trending.tr),
@@ -36,11 +37,12 @@ class MoviePage extends HookWidget {
                 IconButton(
                   icon: Icon(Icons.search, color: Colors.black),
                   onPressed: () {
-                    Get.to(()=> SearchMoviePage());
+                    Get.to(() => SearchMoviePage());
                   },
                 ),
               ],
             ),
+            Divider(height: 1, color: Colors.grey[300]),
             Expanded(
               child: TabBarView(
                 controller: tabController,
