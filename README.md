@@ -4,6 +4,9 @@ just for test assignment
 
 ## Getting Started
 
+#### token替换
+去https://www.themoviedb.org/settings/api获取自己的token，替换`  [token_interceptor.dart](lib/network/interceptor/token_interceptor.dart) `中的`_apiToken`。
+
 #### 资源文件生成
 
 - 生成命令
