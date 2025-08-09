@@ -29,6 +29,7 @@ Person _$PersonFromJson(Map<String, dynamic> json) => Person(
   profilePath: json['profile_path'] as String?,
   biography: json['biography'] as String?,
   birthday: json['birthday'] as String?,
+  birthPlace: json['place_of_birth'] as String?,
 );
 
 const _$PersonTypeEnumMap = {

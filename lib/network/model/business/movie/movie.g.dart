@@ -26,7 +26,7 @@ MovieType _$MovieTypeFromJson(Map<String, dynamic> json) =>
 
 MoviesOfCaster _$MoviesOfCasterFromJson(Map<String, dynamic> json) =>
     MoviesOfCaster(
-      id: json['id'] as String,
+      id: (json['id'] as num).toInt(),
       castMovies: (json['cast'] as List<dynamic>)
           .map((e) => Movie.fromJson(e as Map<String, dynamic>))
           .toList(),

@@ -13,14 +13,9 @@ class CastersOfMovie {
   @JsonKey(name: 'crew')
   final List<Person> crewList;
 
-  CastersOfMovie({
-    required this.movieId,
-    required this.casterList,
-    required this.crewList,
-  });
+  CastersOfMovie({required this.movieId, required this.casterList, required this.crewList});
 
   factory CastersOfMovie.fromJson(Map<String, dynamic> json) => _$CastersOfMovieFromJson(json);
-
 }
 
 @JsonSerializable(createToJson: false)
@@ -36,6 +31,8 @@ class Person {
   // 以下字段只有详情接口才有
   final String? biography;
   final String? birthday;
+  @JsonKey(name: 'place_of_birth')
+  final String? birthPlace;
 
   Person({
     required this.id,
@@ -45,6 +42,7 @@ class Person {
     required this.profilePath,
     required this.biography,
     required this.birthday,
+    required this.birthPlace,
   });
 
   factory Person.fromJson(Map<String, dynamic> json) => _$PersonFromJson(json);
@@ -60,6 +58,21 @@ enum Gender {
   male,
   @JsonValue(3)
   nonBinary,
+}
+
+extension GenderExtension on Gender {
+  String get name {
+    switch (this) {
+      case Gender.none:
+        return LocaleKeys.genderNone.tr;
+      case Gender.female:
+        return LocaleKeys.genderFemale.tr;
+      case Gender.male:
+        return LocaleKeys.genderMale.tr;
+      case Gender.nonBinary:
+        return LocaleKeys.genderNonBinary.tr;
+    }
+  }
 }
 
 enum PersonType {

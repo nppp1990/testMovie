@@ -3,5 +3,17 @@
   "director": "Director",
   "writer": "Writer",
   "producer": "Producer",
-  "other": "Other"
+  "other": "Other",
+  "genderMale": "Male",
+  "genderFemale": "Male",
+  "genderNonBinary": "NonBinary",
+  "genderNone": "Unknown",
+  "gender": "Gender",
+  "birthday": "Birthday",
+  "birthplace": "Place of Birth",
+  "biography": "Biography",
+  "actingList": "Acting",
+  "ratingFormat": "Rating: @rating",
+  "popular": "Popular",
+  "trending": "Trending"
 }

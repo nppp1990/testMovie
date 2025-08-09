@@ -63,7 +63,7 @@ class MovieType {
 
 @JsonSerializable(createToJson: false)
 class MoviesOfCaster {
-  final String id;
+  final int id;
   @JsonKey(name: 'cast')
   final List<Movie> castMovies;
 

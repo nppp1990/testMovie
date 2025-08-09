@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:yj_moive/service/locales/translation.dart';
 
-import 'generated/locales.g.dart';
 import 'modules/movie_list/presentation/movie_page.dart';
 
 void main() {

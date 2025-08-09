@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:yj_moive/common/widgets/image.dart';
+import 'package:yj_moive/modules/actor_detail/presentation/actor_detail_page.dart';
 import 'package:yj_moive/modules/movie_detail/provider/person_list.dart';
 import 'package:yj_moive/network/model/business/movie/cast.dart';
 import 'package:yj_moive/service/image_extension.dart';
@@ -63,33 +65,36 @@ class _PersonItemView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 90,
-      height: 170,
-      margin: EdgeInsets.only(right: 10),
-      decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(6)),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        spacing: 3,
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.only(topLeft: Radius.circular(6), topRight: Radius.circular(6)),
-            child: ProfileImage(imageUrl: person.profilePath?.profileImage, width: 90, height: 120),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 4),
-            child: Text(
-              person.name,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              style: const TextStyle(fontSize: 12, height: 1, color: Colors.black, fontWeight: FontWeight.w500),
+    return GestureDetector(
+      onTap: () => Get.to(() => ActorDetailPage(actor: person)),
+      child: Container(
+        width: 90,
+        height: 170,
+        margin: EdgeInsets.only(right: 10),
+        decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(6)),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          spacing: 3,
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.only(topLeft: Radius.circular(6), topRight: Radius.circular(6)),
+              child: ProfileImage(imageUrl: person.profilePath?.profileImage, width: 90, height: 120),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 4),
-            child: Text(person.type.displayName, style: const TextStyle(fontSize: 10, height: 1, color: Colors.grey)),
-          ),
-        ],
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 4),
+              child: Text(
+                person.name,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(fontSize: 12, height: 1, color: Colors.black, fontWeight: FontWeight.w500),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 4),
+              child: Text(person.type.displayName, style: const TextStyle(fontSize: 10, height: 1, color: Colors.grey)),
+            ),
+          ],
+        ),
       ),
     );
   }

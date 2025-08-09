@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:yj_moive/common/widgets/image.dart';
+import 'package:yj_moive/generated/locales.g.dart';
 import 'package:yj_moive/modules/movie_detail/presentation/movie_detail_page.dart';
 import 'package:yj_moive/network/model/business/movie/movie.dart';
 
@@ -43,7 +45,8 @@ class MovieListItemView extends StatelessWidget {
                         ),
                         const SizedBox(height: 10),
                         Text(
-                          'Rating: ${_getRate(movie.voteAverage)}',
+                          // 'Rating: ${_getRate(movie.voteAverage)}',
+                          LocaleKeys.ratingFormat.trParams({'rating': _getRate(movie.voteAverage)}),
                           style: const TextStyle(
                             fontSize: 14,
                             height: 1,
