@@ -12,6 +12,9 @@
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/ic_launcher.png
+  String get icLauncher => 'assets/images/ic_launcher.png';
+
   /// File path: assets/images/ic_pic_error.png
   String get icPicError => 'assets/images/ic_pic_error.png';
 
@@ -19,7 +22,7 @@ class $AssetsImagesGen {
   String get icProfile => 'assets/images/ic_profile.svg';
 
   /// List of all assets
-  List<String> get values => [icPicError, icProfile];
+  List<String> get values => [icLauncher, icPicError, icProfile];
 }
 
 class Assets {

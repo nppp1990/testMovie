@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:yj_moive/modules/splash/splash_page.dart';
 import 'package:yj_moive/service/locales/translation.dart';
 
 import 'modules/movie_list/presentation/movie_page.dart';
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
         fallbackLocale: Locale('en', 'US'),
         defaultTransition: Transition.rightToLeft,
         // theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple)),
-        home: const MoviePage(),
+        home: const SplashPage(),
       ),
     );
   }
