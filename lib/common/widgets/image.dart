@@ -26,7 +26,12 @@ class MovieImage extends StatelessWidget {
   }
 
   Widget _buildErrorWidget() {
-    return Center(child: Image.asset(Assets.images.icPicError, width: width / 2));
+    return Container(
+      width: width,
+      height: height,
+      alignment: Alignment.center,
+      child: Image.asset(Assets.images.icPicError, width: width / 2),
+    );
   }
 }
 
