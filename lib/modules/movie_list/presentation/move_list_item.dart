@@ -75,7 +75,12 @@ class MovieListItemView extends StatelessWidget {
 
   Widget _buildTitleView() {
     if (query == null || query!.isEmpty || !movie.title.contains(query!)) {
-      return Text(movie.title, style: const TextStyle(fontSize: 16, height: 1, fontWeight: FontWeight.w700));
+      return Text(
+        movie.title,
+        maxLines: 2,
+        overflow: TextOverflow.ellipsis,
+        style: const TextStyle(fontSize: 16, height: 1, fontWeight: FontWeight.w700),
+      );
     }
     final queryIndex = movie.title.indexOf(query!);
     final beforeQuery = movie.title.substring(0, queryIndex);
@@ -83,6 +88,8 @@ class MovieListItemView extends StatelessWidget {
     final normalStyle = const TextStyle(fontSize: 16, height: 1, fontWeight: FontWeight.w700, color: Colors.black);
     final queryStyle = normalStyle.copyWith(backgroundColor: Colors.grey);
     return RichText(
+      maxLines: 2,
+      overflow: TextOverflow.ellipsis,
       text: TextSpan(
         style: normalStyle,
         children: [
