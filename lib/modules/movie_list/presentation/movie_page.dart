@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:get/get.dart';
+import 'package:yj_moive/generated/locales.g.dart';
 import 'package:yj_moive/modules/movie_list/presentation/move_list_view.dart';
+import 'package:yj_moive/modules/movie_list/presentation/search_movie_page.dart';
 
 class MoviePage extends HookWidget {
   const MoviePage({super.key});
@@ -12,41 +15,41 @@ class MoviePage extends HookWidget {
       body: SafeArea(
         child: Column(
           children: [
-            TabBar(
-              isScrollable: true,
-              controller: tabController,
-              labelStyle: TextStyle(
-                color: Colors.black,
-                fontSize: 20,
-                fontWeight: FontWeight.w500,
-              ),
-              unselectedLabelStyle: TextStyle(
-                color: Colors.grey,
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-              ),
-              indicatorColor: Colors.yellow,
-              indicatorWeight: 4.0,
-              indicatorSize: TabBarIndicatorSize.label,
-              labelPadding: EdgeInsets.symmetric(horizontal: 10),
-              indicatorPadding: EdgeInsets.only(bottom: 8),
-              tabs: [
-                Tab(text: 'Popular'),
-                Tab(text: 'Trending'),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                TabBar(
+                  isScrollable: true,
+                  controller: tabController,
+                  labelStyle: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.w500),
+                  unselectedLabelStyle: TextStyle(color: Colors.grey, fontSize: 16, fontWeight: FontWeight.w500),
+                  indicatorColor: Colors.yellow,
+                  indicatorWeight: 4.0,
+                  indicatorSize: TabBarIndicatorSize.label,
+                  labelPadding: EdgeInsets.symmetric(horizontal: 10),
+                  indicatorPadding: EdgeInsets.only(bottom: 8),
+                  tabs: [
+                    Tab(text: LocaleKeys.popular.tr),
+                    Tab(text: LocaleKeys.trending.tr),
+                  ],
+                ),
+                IconButton(
+                  icon: Icon(Icons.search, color: Colors.black),
+                  onPressed: () {
+                    Get.to(()=> SearchMoviePage());
+                  },
+                ),
               ],
             ),
             Expanded(
               child: TabBarView(
                 controller: tabController,
-                children: [
-                  KeepAliveMovieListView(isPopular: true),
-                  KeepAliveMovieListView(isPopular: false),
-                ],
+                children: [KeepAliveMovieListView(isPopular: true), KeepAliveMovieListView(isPopular: false)],
               ),
             ),
           ],
         ),
-      )
+      ),
     );
   }
 }

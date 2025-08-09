@@ -23,6 +23,9 @@ abstract class RestClient {
   @GET('/trending/movie/day')
   Future<NetResult<BaseList<Movie>>> getTrendingMovies(@Query('page') int page);
 
+  @GET('/search/movie')
+  Future<NetResult<BaseList<Movie>>> searchMovies(@Query('query') String query, @Query('page') int page);
+
   @GET('/movie/{movie_id}')
   Future<NetResult<Movie>> getMovieDetail(@Path('movie_id') int movieId);
 

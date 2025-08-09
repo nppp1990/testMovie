@@ -4,6 +4,8 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:yj_moive/modules/movie_list/presentation/move_list_item.dart';
 import 'package:yj_moive/modules/movie_list/provider/movie_list.dart';
+import 'package:yj_moive/modules/movie_list/state/movie_lsit.dart';
+import 'package:yj_moive/provider/base_page_list_provider.dart';
 
 class KeepAliveMovieListView extends StatefulWidget {
   final bool isPopular;
@@ -14,8 +16,8 @@ class KeepAliveMovieListView extends StatefulWidget {
   State<KeepAliveMovieListView> createState() => _KeepAliveMovieListViewState();
 }
 
-class _KeepAliveMovieListViewState extends State<KeepAliveMovieListView> with AutomaticKeepAliveClientMixin<KeepAliveMovieListView> {
-
+class _KeepAliveMovieListViewState extends State<KeepAliveMovieListView>
+    with AutomaticKeepAliveClientMixin<KeepAliveMovieListView> {
   @override
   bool get wantKeepAlive => true;
 
@@ -27,18 +29,24 @@ class _KeepAliveMovieListViewState extends State<KeepAliveMovieListView> with Au
 }
 
 class MovieListView extends HookConsumerWidget {
-  final bool isPopular;
+  // 这里isPopular为null表示搜索列表
+  final bool? isPopular;
 
   const MovieListView({super.key, required this.isPopular});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final movieListState = isPopular
-        ? ref.watch(popularMovieListProvider)
-        : ref.watch(trendingMovieListProvider);
-    final listNotifier = isPopular
-        ? ref.read(popularMovieListProvider.notifier)
-        : ref.read(trendingMovieListProvider.notifier);
+    final MovieListState movieListState;
+    final BaseListNotifier listNotifier;
+    if (isPopular == null) {
+      movieListState = ref.watch(searchMovieListProvider);
+      listNotifier = ref.read(searchMovieListProvider.notifier);
+    } else {
+      movieListState = isPopular! ? ref.watch(popularMovieListProvider) : ref.watch(trendingMovieListProvider);
+      listNotifier = isPopular!
+          ? ref.read(popularMovieListProvider.notifier)
+          : ref.read(trendingMovieListProvider.notifier);
+    }
 
     final scrollController = useScrollController();
     useEffect(() {
@@ -49,9 +57,6 @@ class MovieListView extends HookConsumerWidget {
       });
       return null;
     }, []);
-
-
-    print('----error: ${movieListState.error}');
 
     if (movieListState.items.isEmpty) {
       if (movieListState.isLoading) {
@@ -75,9 +80,12 @@ class MovieListView extends HookConsumerWidget {
         }
 
         final movie = movieListState.items[index];
-        return MovieListItemView(movie: movie);
+        if (movieListState is SearchMovieListState) {
+          return MovieListItemView(movie: movie, query: movieListState.query);
+        } else {
+          return MovieListItemView(movie: movie);
+        }
       },
     );
-
   }
 }

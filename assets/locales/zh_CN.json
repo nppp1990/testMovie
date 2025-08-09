@@ -15,5 +15,6 @@
   "actingList": "作品",
   "ratingFormat": "评分: @rating",
   "popular": "热门",
-  "trending": "热搜"
+  "trending": "热搜",
+  "movieSearchHint": "搜索电影名称"
 }

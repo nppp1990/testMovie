@@ -15,5 +15,6 @@
   "actingList": "Acting",
   "ratingFormat": "Rating: @rating",
   "popular": "Popular",
-  "trending": "Trending"
+  "trending": "Trending",
+  "movieSearchHint": "Search for movies by name"
 }

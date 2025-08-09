@@ -7,8 +7,9 @@ import 'package:yj_moive/network/model/business/movie/movie.dart';
 
 class MovieListItemView extends StatelessWidget {
   final Movie movie;
+  final String? query;
 
-  const MovieListItemView({super.key, required this.movie});
+  const MovieListItemView({super.key, required this.movie, this.query});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +34,7 @@ class MovieListItemView extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(height: 5),
-                        Text(movie.title, style: const TextStyle(fontSize: 16, height: 1, fontWeight: FontWeight.w700)),
+                        _buildTitleView(),
                         const SizedBox(height: 10),
                         Text(movie.releaseDate, style: const TextStyle(fontSize: 14, height: 1, color: Colors.grey)),
                         const SizedBox(height: 10),
@@ -67,6 +68,27 @@ class MovieListItemView extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildTitleView() {
+    if (query == null || query!.isEmpty || !movie.title.contains(query!)) {
+      return Text(movie.title, style: const TextStyle(fontSize: 16, height: 1, fontWeight: FontWeight.w700));
+    }
+    final queryIndex = movie.title.indexOf(query!);
+    final beforeQuery = movie.title.substring(0, queryIndex);
+    final afterQuery = movie.title.substring(queryIndex + query!.length);
+    final normalStyle = const TextStyle(fontSize: 16, height: 1, fontWeight: FontWeight.w700, color: Colors.black);
+    final queryStyle = normalStyle.copyWith(backgroundColor: Colors.grey);
+    return RichText(
+      text: TextSpan(
+        style: normalStyle,
+        children: [
+          TextSpan(text: beforeQuery),
+          TextSpan(text: query, style: queryStyle),
+          TextSpan(text: afterQuery),
+        ],
       ),
     );
   }

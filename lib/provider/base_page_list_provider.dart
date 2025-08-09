@@ -2,7 +2,7 @@ import 'package:yj_moive/network/model/response/list.dart';
 import 'package:yj_moive/provider/base_page_list_state.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-mixin BaseSeekingListNotifier<U, T extends BasePageListState<U>> on StateNotifier<T> {
+mixin BaseListNotifier<U, T extends BasePageListState<U>> on StateNotifier<T> {
   void refresh() {
     state = state.copyWith(isLoading: true, items: [], error: null) as T;
     loadInitialItems();

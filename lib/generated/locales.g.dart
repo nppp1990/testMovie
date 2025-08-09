@@ -28,6 +28,7 @@ class LocaleKeys {
   static const ratingFormat = 'ratingFormat';
   static const popular = 'popular';
   static const trending = 'trending';
+  static const movieSearchHint = 'movieSearchHint';
 }
 
 class Locales {
@@ -49,6 +50,7 @@ class Locales {
     'ratingFormat': '评分: @rating',
     'popular': '热门',
     'trending': '热搜',
+    'movieSearchHint': '搜索电影名称',
   };
   static const en_US = {
     'actor': 'Actor',
@@ -68,5 +70,6 @@ class Locales {
     'ratingFormat': 'Rating: @rating',
     'popular': 'Popular',
     'trending': 'Trending',
+    'movieSearchHint': 'Search for movies by name',
   };
 }

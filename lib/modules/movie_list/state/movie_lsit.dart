@@ -27,3 +27,35 @@ class MovieListState extends BasePageListState<Movie> {
     );
   }
 }
+
+class SearchMovieListState extends MovieListState {
+  final String query;
+
+  SearchMovieListState({
+    required this.query,
+    required super.items,
+    required super.isLoading,
+    required super.page,
+    required super.totalPages,
+    super.error,
+  });
+
+  @override
+  BasePageListState<Movie> copyWith({
+    Object? query = unset,
+    Object? items = unset,
+    Object? isLoading = unset,
+    Object? page = unset,
+    Object? totalPages = unset,
+    Object? error = unset,
+  }) {
+    return SearchMovieListState(
+      query: query == unset ? this.query : query as String,
+      items: items == unset ? this.items : items as List<Movie>,
+      isLoading: isLoading == unset ? this.isLoading : isLoading as bool,
+      page: page == unset ? this.page : page as int,
+      totalPages: totalPages == unset ? this.totalPages : totalPages as int,
+      error: error == unset ? this.error : error as String?,
+    );
+  }
+}
