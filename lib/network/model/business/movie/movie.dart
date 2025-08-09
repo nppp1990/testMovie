@@ -45,6 +45,10 @@ class Movie {
   factory Movie.fromJson(Map<String, dynamic> json) => _$MovieFromJson(json);
 
   String get imageUrl => posterImage?.posterImage ?? backdropImage?.backdropImage ?? '';
+
+  String? get posterImageUrl => posterImage?.posterImage;
+
+  String? get backdropImageUrl => backdropImage?.backdropImage;
 }
 
 @JsonSerializable(createToJson: false)

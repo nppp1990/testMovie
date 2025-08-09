@@ -1,12 +1,11 @@
-import 'dart:ui';
-
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:yj_moive/common/widgets/image.dart';
 import 'package:yj_moive/modules/movie_detail/presentation/persons_layout.dart';
 import 'package:yj_moive/modules/movie_detail/provider/movie_detail.dart';
 import 'package:yj_moive/network/model/business/movie/movie.dart';
-import 'package:yj_moive/service/image_extension.dart';
 
 class MovieDetailPage extends ConsumerWidget {
   final int movieId;
@@ -32,26 +31,26 @@ class MovieDetailPage extends ConsumerWidget {
           ),
           child: Scaffold(
             backgroundColor: Color(0xff323232).withOpacity(0.6),
-            body: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _MovieHeader(movie: movie),
-                  _buildLabel('简介'),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                    child: Text(
-                      movie.overview,
-                      style: const TextStyle(fontSize: 14, color: Colors.white, height: 1.5),
-                      textAlign: TextAlign.justify,
+            body: SafeArea(
+              top: false,
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _MovieHeader(movie: movie),
+                    _buildLabel('简介'),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                      child: Text(
+                        movie.overview,
+                        style: const TextStyle(fontSize: 14, color: Colors.white, height: 1.5),
+                        textAlign: TextAlign.justify,
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 20),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20),
-                    child: PersonsLayout(movieId: movieId),
-                  ),
-                ],
+                    SizedBox(height: 20),
+                    PersonsLayout(movieId: movieId),
+                  ],
+                ),
               ),
             ),
           ),
@@ -82,7 +81,15 @@ class _MovieHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Positioned.fill(child: Image.network(movie.backdropImage?.backdropImage ?? '', fit: BoxFit.cover)),
+        if (movie.backdropImageUrl != null)
+          Positioned.fill(
+            child: CachedNetworkImage(
+              imageUrl: movie.backdropImageUrl!,
+              fit: BoxFit.cover,
+              placeholder: (context, url) => SizedBox.shrink(),
+              errorWidget: (context, url, error) => SizedBox.shrink(),
+            ),
+          ),
         SizedBox(
           width: double.infinity,
           height: 250,
@@ -100,7 +107,7 @@ class _MovieHeader extends StatelessWidget {
                   const SizedBox(width: 20),
                   ClipRRect(
                     borderRadius: BorderRadius.circular(8),
-                    child: Image.network(movie.imageUrl, width: 100, height: 150, fit: BoxFit.cover),
+                    child: MovieImage(imageUrl: movie.posterImageUrl, width: 100, height: 150),
                   ),
                   const SizedBox(width: 10),
                   Expanded(

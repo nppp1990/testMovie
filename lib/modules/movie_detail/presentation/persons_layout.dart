@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:yj_moive/common/widgets/image.dart';
 import 'package:yj_moive/modules/movie_detail/provider/person_list.dart';
 import 'package:yj_moive/network/model/business/movie/cast.dart';
 import 'package:yj_moive/service/image_extension.dart';
@@ -29,9 +30,12 @@ class PersonsLayout extends ConsumerWidget {
   }
 
   Widget _buildLabel(String text) {
-    return Text(
-      text,
-      style: const TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.w500),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Text(
+        text,
+        style: const TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.w500),
+      ),
     );
   }
 
@@ -40,6 +44,7 @@ class PersonsLayout extends ConsumerWidget {
       height: 170,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
+        padding: EdgeInsets.only(left: 20),
         itemCount: persons.length,
         itemExtent: 100,
         itemBuilder: (context, index) {
@@ -69,7 +74,7 @@ class _PersonItemView extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.only(topLeft: Radius.circular(6), topRight: Radius.circular(6)),
-            child: Image.network(person.profilePath?.profileImage ?? '', width: 90, height: 120, fit: BoxFit.cover),
+            child: ProfileImage(imageUrl: person.profilePath?.profileImage, width: 90, height: 120),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 4),
