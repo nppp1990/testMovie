@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:yj_moive/common/widgets/image.dart';
+import 'package:yj_moive/generated/locales.g.dart';
 import 'package:yj_moive/modules/movie_detail/presentation/persons_layout.dart';
 import 'package:yj_moive/modules/movie_detail/provider/movie_detail.dart';
 import 'package:yj_moive/network/model/business/movie/movie.dart';
@@ -42,7 +43,7 @@ class MovieDetailPage extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     _MovieHeader(movie: movie),
-                    _buildLabel('简介'),
+                    _buildLabel(LocaleKeys.biography.tr),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20.0),
                       child: Text(

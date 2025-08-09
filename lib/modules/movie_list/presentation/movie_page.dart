@@ -3,7 +3,6 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get/get.dart';
 import 'package:yj_moive/generated/locales.g.dart';
 import 'package:yj_moive/modules/movie_list/presentation/move_list_view.dart';
-import 'package:yj_moive/modules/movie_list/presentation/search_movie_page.dart';
 import 'package:yj_moive/routes/index.dart';
 
 class MoviePage extends HookWidget {

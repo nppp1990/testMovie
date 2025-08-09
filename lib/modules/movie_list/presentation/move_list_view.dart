@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -64,7 +63,12 @@ class MovieListView extends HookConsumerWidget {
         return const Center(child: CircularProgressIndicator());
       } else if (movieListState.error != null) {
         // 如果没有数据且有错误，显示错误信息 todo refresh ui
-        return Center(child: Text('Error: ${movieListState.error}'));
+        return Center(child: TextButton(
+          onPressed: () {
+            listNotifier.refresh();
+          },
+          child: Text('Error: ${movieListState.error}'),
+        ));
       } else {
         return const Center(child: Text('No movies available'));
       }

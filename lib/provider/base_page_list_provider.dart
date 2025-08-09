@@ -4,7 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 mixin BaseListNotifier<U, T extends BasePageListState<U>> on StateNotifier<T> {
   void refresh() {
-    state = state.copyWith(isLoading: true, items: [], error: null) as T;
+    state = state.copyWith(isLoading: true, items: <U>[], error: null) as T;
     loadInitialItems();
   }
 
