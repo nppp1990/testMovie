@@ -8,15 +8,17 @@ import 'package:yj_moive/modules/actor_detail/provider/movie_list.dart';
 import 'package:yj_moive/modules/movie_detail/presentation/movie_detail_page.dart';
 import 'package:yj_moive/network/model/business/movie/cast.dart';
 import 'package:yj_moive/network/model/business/movie/movie.dart';
+import 'package:yj_moive/routes/index.dart';
 import 'package:yj_moive/service/image_extension.dart';
 
 class ActorDetailPage extends StatelessWidget {
-  final Person actor;
 
-  const ActorDetailPage({super.key, required this.actor});
+  const ActorDetailPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final Person actor = Get.arguments as Person;
+
     return Scaffold(
       appBar: AppBar(title: Text(actor.name)),
       body: _ActorDetailContentView(actor: actor),
@@ -141,7 +143,7 @@ class _MovieListLayout extends ConsumerWidget {
   Widget _buildItem(Movie movie) {
     return GestureDetector(
       onTap: () {
-        Get.to(() => MovieDetailPage(movieId: movie.id));
+        Get.toNamed(Routes.movieDetail, arguments: {MovieDetailPage.argMovieId: movie.id});
       },
       behavior: HitTestBehavior.opaque,
       child: Column(

@@ -4,6 +4,7 @@ import 'package:yj_moive/common/widgets/image.dart';
 import 'package:yj_moive/generated/locales.g.dart';
 import 'package:yj_moive/modules/movie_detail/presentation/movie_detail_page.dart';
 import 'package:yj_moive/network/model/business/movie/movie.dart';
+import 'package:yj_moive/routes/index.dart';
 
 class MovieListItemView extends StatelessWidget {
   final Movie movie;
@@ -16,7 +17,7 @@ class MovieListItemView extends StatelessWidget {
     return Material(
       child: InkWell(
         onTap: () {
-          Navigator.of(context).push(MaterialPageRoute(builder: (context) => MovieDetailPage(movieId: movie.id)));
+          Get.toNamed(Routes.movieDetail, arguments: {MovieDetailPage.argMovieId: movie.id});
         },
         child: Column(
           mainAxisSize: MainAxisSize.min,

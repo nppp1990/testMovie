@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:yj_moive/gen/assets.gen.dart';
 import 'package:yj_moive/modules/movie_list/presentation/movie_page.dart';
+import 'package:yj_moive/routes/index.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -29,7 +30,7 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
     if (!context.mounted) {
       return;
     }
-    Get.off(() => const MoviePage());
+    Get.offAllNamed(Routes.home);
   }
 
   @override
@@ -46,10 +47,7 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
         child: AnimatedBuilder(
           animation: _controller,
           builder: (BuildContext context, Widget? child) {
-            return Transform.scale(
-              scale: 1.0 + _controller.value * 0.5,
-              child: child,
-            );
+            return Transform.scale(scale: 1.0 + _controller.value * 0.5, child: child);
           },
           child: Image.asset(
             Assets.images.icLauncher,

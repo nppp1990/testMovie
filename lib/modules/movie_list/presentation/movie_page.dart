@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:yj_moive/generated/locales.g.dart';
 import 'package:yj_moive/modules/movie_list/presentation/move_list_view.dart';
 import 'package:yj_moive/modules/movie_list/presentation/search_movie_page.dart';
+import 'package:yj_moive/routes/index.dart';
 
 class MoviePage extends HookWidget {
   const MoviePage({super.key});
@@ -37,7 +38,8 @@ class MoviePage extends HookWidget {
                 IconButton(
                   icon: Icon(Icons.search, color: Colors.black),
                   onPressed: () {
-                    Get.to(() => SearchMoviePage());
+                    // Get.to(() => SearchMoviePage());
+                    Get.toNamed(Routes.search);
                   },
                 ),
               ],

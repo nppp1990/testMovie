@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:yj_moive/common/widgets/image.dart';
-import 'package:yj_moive/modules/actor_detail/presentation/actor_detail_page.dart';
 import 'package:yj_moive/modules/movie_detail/provider/person_list.dart';
 import 'package:yj_moive/network/model/business/movie/cast.dart';
+import 'package:yj_moive/routes/index.dart';
 import 'package:yj_moive/service/image_extension.dart';
 
 class PersonsLayout extends ConsumerWidget {
@@ -66,7 +66,7 @@ class _PersonItemView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Get.to(() => ActorDetailPage(actor: person)),
+      onTap: () => Get.toNamed(Routes.actorDetail, arguments: person),
       child: Container(
         width: 90,
         height: 170,

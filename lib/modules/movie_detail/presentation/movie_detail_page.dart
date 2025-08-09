@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:yj_moive/common/widgets/image.dart';
 import 'package:yj_moive/modules/movie_detail/presentation/persons_layout.dart';
@@ -8,12 +9,15 @@ import 'package:yj_moive/modules/movie_detail/provider/movie_detail.dart';
 import 'package:yj_moive/network/model/business/movie/movie.dart';
 
 class MovieDetailPage extends ConsumerWidget {
-  final int movieId;
+  // final int movieId;
+  static const String argMovieId = 'movieId';
 
-  const MovieDetailPage({super.key, required this.movieId});
+  const MovieDetailPage({super.key});
 
   @override
   Widget build(BuildContext context, ref) {
+    final movieId = Get.arguments[argMovieId] as int;
+
     final movieState = ref.watch(movieDetailProvider(movieId));
 
     return movieState.when(
