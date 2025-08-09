@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:yj_moive/modules/movie_list/presentattion/movie_page.dart';
+import 'package:yj_moive/service/locales/translation.dart';
+
+import 'generated/locales.g.dart';
+import 'modules/movie_list/presentation/movie_page.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,11 +27,12 @@ class MyApp extends StatelessWidget {
         statusBarIconBrightness: Brightness.dark,
         statusBarBrightness: Brightness.dark,
       ),
-      child: MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        ),
+      child: GetMaterialApp(
+        translations: AppLanguageManager(),
+        locale: Get.deviceLocale,
+        fallbackLocale: Locale('en', 'US'),
+        defaultTransition: Transition.rightToLeft,
+        // theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple)),
         home: const MoviePage(),
       ),
     );

@@ -6,28 +6,38 @@ part of 'cast.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-MovieCaster _$MovieCasterFromJson(Map<String, dynamic> json) => MovieCaster(
-  (json['id'] as num).toInt(),
-  json['name'] as String,
-  json['profile_path'] as String,
-);
-
 CastersOfMovie _$CastersOfMovieFromJson(Map<String, dynamic> json) =>
     CastersOfMovie(
-      movieId: json['id'] as String,
+      movieId: (json['id'] as num).toInt(),
       casterList: (json['cast'] as List<dynamic>)
-          .map((e) => MovieCaster.fromJson(e as Map<String, dynamic>))
+          .map((e) => Person.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      crewList: (json['crew'] as List<dynamic>)
+          .map((e) => Person.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Caster _$CasterFromJson(Map<String, dynamic> json) => Caster(
+Person _$PersonFromJson(Map<String, dynamic> json) => Person(
   id: (json['id'] as num).toInt(),
   name: json['name'] as String,
-  profilePath: json['profile_path'] as String?,
-  biography: json['biography'] as String,
-  birthday: json['birthday'] as String,
+  type: $enumDecode(
+    _$PersonTypeEnumMap,
+    json['known_for_department'],
+    unknownValue: PersonType.others,
+  ),
   gender: $enumDecode(_$GenderEnumMap, json['gender']),
+  profilePath: json['profile_path'] as String?,
+  biography: json['biography'] as String?,
+  birthday: json['birthday'] as String?,
 );
+
+const _$PersonTypeEnumMap = {
+  PersonType.actor: 'Acting',
+  PersonType.director: 'Directing',
+  PersonType.writer: 'Writing',
+  PersonType.producer: 'Production',
+  PersonType.others: 'others',
+};
 
 const _$GenderEnumMap = {
   Gender.none: 0,

@@ -136,7 +136,41 @@ class _RestClient implements RestClient {
     );
   }
 
-  Future<NetResult<CastersOfMovie>> _getMovieCasters(String movieId) async {
+  Future<NetResult<Movie>> _getMovieDetail(int movieId) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<NetResult<Movie>>(
+      Options(method: 'GET', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            '/movie/${movieId}',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late NetResult<Movie> _value;
+    try {
+      _value = NetResult<Movie>.fromJson(
+        _result.data!,
+        (json) => Movie.fromJson(json as Map<String, dynamic>),
+      );
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<NetResult<Movie>> getMovieDetail(int movieId) {
+    return MoonCallAdapter<Movie>().adapt(() => _getMovieDetail(movieId));
+  }
+
+  Future<NetResult<CastersOfMovie>> _getMovieCasters(int movieId) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -166,18 +200,18 @@ class _RestClient implements RestClient {
   }
 
   @override
-  Future<NetResult<CastersOfMovie>> getMovieCasters(String movieId) {
+  Future<NetResult<CastersOfMovie>> getMovieCasters(int movieId) {
     return MoonCallAdapter<CastersOfMovie>().adapt(
       () => _getMovieCasters(movieId),
     );
   }
 
-  Future<NetResult<Caster>> _getCasterInfo(String personId) async {
+  Future<NetResult<Person>> _getCasterInfo(int personId) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<NetResult<Caster>>(
+    final _options = _setStreamType<NetResult<Person>>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -188,11 +222,11 @@ class _RestClient implements RestClient {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late NetResult<Caster> _value;
+    late NetResult<Person> _value;
     try {
-      _value = NetResult<Caster>.fromJson(
+      _value = NetResult<Person>.fromJson(
         _result.data!,
-        (json) => Caster.fromJson(json as Map<String, dynamic>),
+        (json) => Person.fromJson(json as Map<String, dynamic>),
       );
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
@@ -202,11 +236,11 @@ class _RestClient implements RestClient {
   }
 
   @override
-  Future<NetResult<Caster>> getCasterInfo(String personId) {
-    return MoonCallAdapter<Caster>().adapt(() => _getCasterInfo(personId));
+  Future<NetResult<Person>> getCasterInfo(int personId) {
+    return MoonCallAdapter<Person>().adapt(() => _getCasterInfo(personId));
   }
 
-  Future<NetResult<MoviesOfCaster>> _getMoviesOfCaster(String personId) async {
+  Future<NetResult<MoviesOfCaster>> _getMoviesOfCaster(int personId) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -236,7 +270,7 @@ class _RestClient implements RestClient {
   }
 
   @override
-  Future<NetResult<MoviesOfCaster>> getMoviesOfCaster(String personId) {
+  Future<NetResult<MoviesOfCaster>> getMoviesOfCaster(int personId) {
     return MoonCallAdapter<MoviesOfCaster>().adapt(
       () => _getMoviesOfCaster(personId),
     );

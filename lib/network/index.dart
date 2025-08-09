@@ -23,14 +23,17 @@ abstract class RestClient {
   @GET('/trending/movie/day')
   Future<NetResult<BaseList<Movie>>> getTrendingMovies(@Query('page') int page);
 
+  @GET('/movie/{movie_id}')
+  Future<NetResult<Movie>> getMovieDetail(@Path('movie_id') int movieId);
+
   @GET('/movie/{movie_id}/credits')
-  Future<NetResult<CastersOfMovie>> getMovieCasters(@Path('movie_id') String movieId);
+  Future<NetResult<CastersOfMovie>> getMovieCasters(@Path('movie_id') int movieId);
 
   @GET('/person/{person_id}')
-  Future<NetResult<Caster>> getCasterInfo(@Path('person_id') String personId);
+  Future<NetResult<Person>> getCasterInfo(@Path('person_id') int personId);
 
   @GET('/person/{person_id}/movie_credits')
-  Future<NetResult<MoviesOfCaster>> getMoviesOfCaster(@Path('person_id') String personId);
+  Future<NetResult<MoviesOfCaster>> getMoviesOfCaster(@Path('person_id') int personId);
 
 }
 

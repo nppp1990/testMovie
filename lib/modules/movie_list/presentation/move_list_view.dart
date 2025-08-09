@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:yj_moive/modules/movie_list/presentattion/move_list_item.dart';
+import 'package:yj_moive/modules/movie_list/presentation/move_list_item.dart';
 import 'package:yj_moive/modules/movie_list/provider/movie_list.dart';
 
 class KeepAliveMovieListView extends StatefulWidget {

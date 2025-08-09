@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:yj_moive/modules/movie_list/presentattion/move_list_view.dart';
+import 'package:yj_moive/modules/movie_list/presentation/move_list_view.dart';
 
 class MoviePage extends HookWidget {
   const MoviePage({super.key});

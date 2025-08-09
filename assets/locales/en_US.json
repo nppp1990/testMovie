@@ -1,0 +1,7 @@
+{
+  "actor": "Actor",
+  "director": "Director",
+  "writer": "Writer",
+  "producer": "Producer",
+  "other": "Other"
+}

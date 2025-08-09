@@ -45,6 +45,10 @@ extension ImageExtension on String {
   }
 
   String get backdropImage {
-    return 'https://image.tmdb.org/t/p/w300$this';
+    return 'https://image.tmdb.org/t/p/w780$this';
+  }
+
+  String get profileImage {
+    return 'https://image.tmdb.org/t/p/w185$this';
   }
 }

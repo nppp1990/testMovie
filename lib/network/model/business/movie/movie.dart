@@ -18,6 +18,11 @@ class Movie {
 
   // minutes 列表接口拿不到这个值，需要详情接口才可以拿到
   final int? runtime;
+  @JsonKey(name: 'original_language')
+  final String language;
+
+  @JsonKey(name: 'genres')
+  final List<MovieType>? types;
 
   @JsonKey(name: 'poster_path')
   final String? posterImage;
@@ -31,6 +36,8 @@ class Movie {
     required this.releaseDate,
     required this.voteAverage,
     required this.runtime,
+    required this.language,
+    required this.types,
     required this.posterImage,
     required this.backdropImage,
   });
@@ -41,12 +48,20 @@ class Movie {
 }
 
 @JsonSerializable(createToJson: false)
+class MovieType {
+  final int id;
+  final String name;
+
+  MovieType({required this.id, required this.name});
+
+  factory MovieType.fromJson(Map<String, dynamic> json) => _$MovieTypeFromJson(json);
+}
+
+@JsonSerializable(createToJson: false)
 class MoviesOfCaster {
   final String id;
   @JsonKey(name: 'cast')
   final List<Movie> castMovies;
-
-  // final List<Movie> crewMovies;
 
   MoviesOfCaster({required this.id, required this.castMovies});
 

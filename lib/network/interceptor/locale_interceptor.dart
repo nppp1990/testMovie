@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:retrofit/http.dart';
 
 class LocaleInterceptor extends Interceptor {
@@ -7,8 +9,9 @@ class LocaleInterceptor extends Interceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     if (options.method == HttpMethod.GET && options.queryParameters[_languageKey] == null) {
-      // todo 国际化切换这里改一下，先写死为中文
-      options.queryParameters[_languageKey] = 'zh-CN';
+      // 目前就只做了两个语言
+      bool isZh = Get.locale?.languageCode == 'zh';
+      options.queryParameters[_languageKey] = isZh ? 'zh-CN' : 'en-US';
     }
     super.onRequest(options, handler);
   }

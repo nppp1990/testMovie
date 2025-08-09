@@ -41,6 +41,9 @@ dependencies:
   flutter_hooks: ^0.21.2
   hooks_riverpod: ^2.6.1
 
+  # 不做状态管理、用来做路由和国际化
+  get: ^4.7.2
+
   logger: ^2.6.0
 
 dev_dependencies:
