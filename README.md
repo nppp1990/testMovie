@@ -1,16 +1,35 @@
 # yj_moive
 
-A new Flutter project.
+just for test assignment
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+#### 资源文件生成
 
-A few resources to get you started if this is your first Flutter project:
+- 生成命令
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+```
+fluttergen
+```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- **flutter_gen**安装，参考 https://pub.dev/packages/flutter_gen
+
+```
+dart pub global activate flutter_gen
+```
+
+#### 国际化
+
+1. 插件安装（如没有安装）
+```
+dart pub global activate get_cli
+```
+2. 编辑 ` [en_US.json](assets/locales/en_US.json) ` 和` [zh_CN.json](assets/locales/zh_CN.json) `
+3. 生成对应代码在` [locales.g.dart](lib/generated/locales.g.dart) `
+
+#### Json对象序列化反序列化
+
+- 参考` [business](lib/network/model/business) `实现
+- 具体可参考https://pub.dev/packages/json_serializable
+- 命令：dart run build_runner build
+
